@@ -17,6 +17,7 @@ public class CompanyService {
         return  repository.findAll();
     }
 
+
     public  List<Company> getCompanies(Optional<String> owner,Optional<String> city){
 
         List<Company> companies = repository.findAll();

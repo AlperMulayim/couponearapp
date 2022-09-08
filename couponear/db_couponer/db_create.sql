@@ -11,13 +11,15 @@ CREATE TABLE cpdb_users(
     PRIMARY KEY(id)
 );
 
-create table cpdb_companies (
-	id INT NOT NULL AUTO_INCREMENT,
-	company_name VARCHAR(50),
-	owner_id VARCHAR(1),
-	address VARCHAR(50),
-	city VARCHAR(50),
-	mail VARCHAR(50),
-	phone VARCHAR(50),
-    PRIMARY KEY(id)
+create table cpdb_discount_cards (
+	id INT,
+	company_id INT,
+	campaing_id INT,
+	campaing_name VARCHAR(25),
+	barcode VARCHAR(50),
+	create_date DATE,
+	expire_date DATE,
+	used_date DATE
 );
+
+
