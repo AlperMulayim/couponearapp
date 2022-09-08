@@ -1,4 +1,25 @@
-
+create table cpdb_discount_cards (
+	id INT  NOT NULL AUTO_INCREMENT,
+	company_id INT,
+	campaing_id INT,
+	campaing_name VARCHAR(25),
+	barcode VARCHAR(50),
+	create_date DATE,
+	expire_date DATE,
+	used_date DATE,
+	PRIMARY KEY(id)
+);
+create table cpdb_campaigns (
+	id INT NOT NULL AUTO_INCREMENT,
+	owner_id INT,
+	campaign_id VARCHAR(50),
+	num_of_cards INT,
+	campaign_name VARCHAR(50),
+	campaign_detail VARCHAR(50),
+	create_date DATE,
+	expire_date DATE,
+	PRIMARY KEY(id)
+);
 insert into cpdb_discount_cards (id, company_id, campaing_id, campaing_name, barcode, create_date, expire_date, used_date) values (1, 1, 2, 'Discount For Friday', 'E1-27-3D-A6-8B-DE', '2021-11-10', '2022-12-08', '2022-10-05');
 insert into cpdb_discount_cards (id, company_id, campaing_id, campaing_name, barcode, create_date, expire_date, used_date) values (2, 4, 1, 'Discount For Friday', '96-7B-B1-5C-26-21', '2022-04-22', '2023-02-03', '2022-10-16');
 insert into cpdb_discount_cards (id, company_id, campaing_id, campaing_name, barcode, create_date, expire_date, used_date) values (3, 2, 3, 'Discount Sales Everything', '47-D7-65-E2-5F-49', '2022-05-16', '2023-03-13', '2022-04-03');

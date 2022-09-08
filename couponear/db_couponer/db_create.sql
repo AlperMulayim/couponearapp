@@ -12,14 +12,15 @@ CREATE TABLE cpdb_users(
 );
 
 create table cpdb_discount_cards (
-	id INT,
+	id INT  NOT NULL AUTO_INCREMENT,
 	company_id INT,
 	campaing_id INT,
 	campaing_name VARCHAR(25),
 	barcode VARCHAR(50),
 	create_date DATE,
 	expire_date DATE,
-	used_date DATE
+	used_date DATE,
+	PRIMARY KEY(id)
 );
 
 

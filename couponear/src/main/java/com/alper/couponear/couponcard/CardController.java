@@ -1,12 +1,10 @@
 package com.alper.couponear.couponcard;
 
+import com.alper.couponear.campaing.Campaign;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.PrimitiveIterator;
 
 @RestController
 @RequestMapping("/api/v1/cards")
@@ -17,5 +15,15 @@ public class CardController {
     @GetMapping
     public List<CouponCard> getCards(){
         return  service.getCards();
+    }
+
+    @PostMapping
+    public CouponCard saveCard(@RequestBody CouponCard card){
+        return  service.saveCards(card);
+    }
+
+    @PostMapping("/generate")
+    public List<CouponCard> generateCards(@RequestBody Campaign cardInfo){
+        return null;
     }
 }
