@@ -16,3 +16,4 @@ spring:
 appset:
   totalcampaings: 10
   totalcards: 200
+  totalusercards: 10

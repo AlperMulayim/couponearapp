@@ -8,6 +8,7 @@ CREATE TABLE cpdb_users(
     first_name VARCHAR(65),
     surname VARCHAR(65),
     mail VARCHAR(65),
+	available_system_cards INT,
     PRIMARY KEY(id)
 );
 
@@ -50,3 +51,12 @@ CREATE TABLE cpdb_campaign_categories(
 	FOREIGN KEY(category_id) REFERENCES cpdb_categories(id)
 );
 
+
+CREATE TABLE cpdb_user_references(
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT,
+	reference_id INT,
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES cpdb_users(id),
+	FOREIGN KEY(reference_id) REFERENCES cpdb_users(id)
+);

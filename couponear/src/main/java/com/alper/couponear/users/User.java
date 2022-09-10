@@ -1,17 +1,20 @@
 package com.alper.couponear.users;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Entity
 @Table(name = "cpdb_users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -29,4 +32,15 @@ public class User {
 
     @Column(name =  "mail")
     private String email;
+
+    @Column(name = "available_system_cards")
+    private Integer availableSystemCards;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cpdb_user_references",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "reference_id")
+    )
+    private List<User> references;
 }
