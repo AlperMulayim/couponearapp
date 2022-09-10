@@ -2,6 +2,7 @@ package com.alper.couponear;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,6 +15,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
 @EnableSwagger2
+@EnableConfigurationProperties
 public class CouponearApplication {
 
 	public static void main(String[] args) {

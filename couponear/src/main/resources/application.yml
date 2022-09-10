@@ -12,3 +12,7 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+appset:
+  totalcampaings: 10
+  totalcards: 200

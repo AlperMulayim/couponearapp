@@ -35,4 +35,9 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @GetMapping("{id}/detail")
+    public ResponseEntity<CompanyDetail> getCompanyDetail(@PathVariable(name = "id") Integer id){
+            return  ResponseEntity.ok(service.getCompanyDetail(id).get());
+    }
+
 }
