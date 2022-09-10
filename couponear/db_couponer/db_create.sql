@@ -45,6 +45,8 @@ CREATE TABLE cpdb_campaign_categories(
 	id INT NOT NULL AUTO_INCREMENT,
 	campaign_id INT,
 	category_id INT,
-	FOREIGN KEY(campaign_id) REFERENCES cpdb_campaigns(id)
+	PRIMARY KEY(id),
+	FOREIGN KEY(campaign_id) REFERENCES cpdb_campaigns(id),
 	FOREIGN KEY(category_id) REFERENCES cpdb_categories(id)
 );
+
