@@ -1,0 +1,10 @@
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (1, 'Sly', 'Mingay', 'smingay0@topsy.com', '91-01-9B-5D-AA-4C', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (2, 'Cece', 'Ware', 'cware1@sphinn.com', '57-B0-E6-1F-97-9A', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (3, 'Willi', 'McCarl', 'wmccarl2@noaa.gov', '4B-1D-45-D1-AE-F0', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (4, 'Consalve', 'Hymor', 'chymor3@homestead.com', '1B-59-47-EA-BA-81', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (5, 'Russ', 'McGourty', 'rmcgourty4@hubpages.com', '03-07-B1-20-A1-9A', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (6, 'Joceline', 'Hammersley', 'jhammersley5@hao123.com', '37-7E-CB-6F-95-3F', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (7, 'Peterus', 'Cussen', 'pcussen6@umich.edu', 'A5-12-57-1A-91-38', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (8, 'Trude', 'MacSween', 'tmacsween7@reddit.com', '29-06-41-51-6E-A3', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (9, 'Elijah', 'Freke', 'efreke8@businessinsider.com', 'ED-81-32-4F-CC-A6', 10);
+insert into cpdb_users (id, first_name, surname, mail, user_uid, available_system_cards) values (10, 'Taber', 'O''Nions', 'tonions9@newyorker.com', '06-7E-32-CA-CD-55', 10);

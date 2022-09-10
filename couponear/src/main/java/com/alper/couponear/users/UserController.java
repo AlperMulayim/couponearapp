@@ -24,6 +24,7 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User user){
+        user.setAvailableSystemCards(totalUserCards);
         return userRepository.save(user);
     }
 
