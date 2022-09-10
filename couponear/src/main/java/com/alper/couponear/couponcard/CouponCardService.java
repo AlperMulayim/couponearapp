@@ -2,17 +2,12 @@ package com.alper.couponear.couponcard;
 
 import com.alper.couponear.campaing.Campaign;
 import com.alper.couponear.campaing.CampaignRepository;
-import com.alper.couponear.campaing.CampaignService;
-import com.alper.couponear.company.Company;
+
 import com.alper.couponear.company.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.*;
 
 @Service
