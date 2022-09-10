@@ -1,7 +1,8 @@
 package com.alper.couponear.couponcard;
 
 import com.alper.couponear.campaing.Campaign;
-import org.hibernate.id.GUIDGenerator;
+import com.alper.couponear.campaing.CampaignRepository;
+import com.alper.couponear.campaing.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class CouponCardService {
     @Autowired
     private  CouponCardRepository cardRepository;
 
+    @Autowired
+    private CampaignRepository campaignRepository;
+
     public List<CouponCard> getCards(){
         return  this.cardRepository.findAll();
     }
@@ -20,21 +24,15 @@ public class CouponCardService {
         return  this.cardRepository.save(card);
     }
 
-    public void generateAndSaveCards(Campaign campaign){
-        Integer numOfCards = campaign.getNumOfCards();
-        List<CouponCard> cards = new LinkedList<>();
+    public CouponCard generateAndSaveCard(Campaign campaign){
 
-        for(int i = 0; i < numOfCards; ++i){
             Random random = new Random();
-
             UUID uuid = UUID.randomUUID();
 
-            String barcodeBegin = Integer.toHexString(random.nextInt(100) + i % 11);
+            String barcodeBegin = Integer.toHexString(random.nextInt(100)  % 11);
             String barcodeEnd= uuid.toString().toUpperCase().substring(0,4);
 
-
             String barcode = "CP"+ campaign.getOwnerId() + "-" + barcodeBegin.toUpperCase() +"-" + barcodeEnd;
-
 
             CouponCard card = CouponCard.builder()
                     .campaingId(campaign.getId())
@@ -43,8 +41,19 @@ public class CouponCardService {
                     .campaingName(campaign.getName())
                     .barcode(barcode)
                     .build();
-            cards.add(card);
+
+            return cardRepository.save(card);
         }
-        cardRepository.saveAll(cards);
-    }
+
+        public Optional<CouponCard> createUserCard(String campaignUid){
+            CouponCard card = null;
+            Optional<Campaign> campaign = campaignRepository.findByUid(campaignUid);
+
+            if (campaign.isPresent()){
+               card =  this.generateAndSaveCard(campaign.get());
+               campaign.get().setNumOfCards(campaign.get().getNumOfCards() -1);
+               campaignRepository.save(campaign.get());
+            }
+            return  Optional.of(card);
+        }
 }

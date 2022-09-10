@@ -2,9 +2,12 @@ package com.alper.couponear.couponcard;
 
 import com.alper.couponear.campaing.Campaign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/cards")
@@ -23,7 +26,15 @@ public class CardController {
     }
 
     @PostMapping("/generate")
-    public List<CouponCard> generateCards(@RequestBody Campaign cardInfo){
-        return null;
+    public ResponseEntity<CouponCard> generateCard(@RequestParam(name = "campaignUid", required = true) Optional<String> campaignUid) {
+        if (campaignUid.isPresent()) {
+           Optional<CouponCard> card = service.createUserCard(campaignUid.get());
+           if(card.isPresent()){
+               return ResponseEntity.ok(card.get());
+           }
+           return  ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        } else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
     }
 }
