@@ -46,14 +46,14 @@ public class CouponCardService {
         }
 
         public Optional<CouponCard> createUserCard(String campaignUid){
-            CouponCard card = null;
+            Optional<CouponCard> card = Optional.empty();
             Optional<Campaign> campaign = campaignRepository.findByUid(campaignUid);
 
             if (campaign.isPresent()){
-               card =  this.generateAndSaveCard(campaign.get());
+               card =  Optional.of(this.generateAndSaveCard(campaign.get()));
                campaign.get().setNumOfCards(campaign.get().getNumOfCards() -1);
                campaignRepository.save(campaign.get());
             }
-            return  Optional.of(card);
+            return  card;
         }
 }
