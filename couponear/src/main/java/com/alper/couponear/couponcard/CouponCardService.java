@@ -3,6 +3,8 @@ package com.alper.couponear.couponcard;
 import com.alper.couponear.campaing.Campaign;
 import com.alper.couponear.campaing.CampaignRepository;
 import com.alper.couponear.campaing.CampaignService;
+import com.alper.couponear.company.Company;
+import com.alper.couponear.company.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class CouponCardService {
 
     @Autowired
     private CampaignRepository campaignRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     public List<CouponCard> getCards(){
         return  this.cardRepository.findAll();
@@ -40,6 +45,7 @@ public class CouponCardService {
             String barcode = "CP"+ campaign.getOwnerId() + "-" + barcodeBegin.toUpperCase() +"-" + barcodeEnd;
 
             CouponCard card = CouponCard.builder()
+                    .companyId(campaign.getOwnerId())
                     .campaingId(campaign.getId())
                     .createDate(campaign.getCreateDate())
                     .expireDate(campaign.getExpireDate())
@@ -75,6 +81,7 @@ public class CouponCardService {
                     cardRepository.save(card.get());
                 }
             }
+            //add exception for used card not used again;
             return card;
         }
 }

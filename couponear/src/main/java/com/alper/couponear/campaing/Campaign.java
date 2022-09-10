@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cpdb_campaigns")
@@ -30,4 +31,13 @@ public class Campaign {
     private Date createDate;
     @Column(name = "expire_date")
     private Date expireDate;
+
+    @ManyToMany
+    @JoinTable(
+            name="cpdb_campaign_categories",
+            joinColumns = @JoinColumn(name = "campaign_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<CampaignCategories> categories;
+
 }
