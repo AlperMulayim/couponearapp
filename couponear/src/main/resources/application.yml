@@ -8,3 +8,7 @@ spring:
     hibernate.ddl-auto: validate
     generate-ddl: true
     show-sql: true
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
