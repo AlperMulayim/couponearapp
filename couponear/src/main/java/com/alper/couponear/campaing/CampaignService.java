@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CampaignService {
@@ -34,5 +35,30 @@ public class CampaignService {
 
     public Optional<Campaign> getCampaign(String campaignUid){
      return repository.findByUid(campaignUid);
+    }
+
+    public Optional<CampaignDetail> getCampaignDetail(String campaignUid){
+        Optional<Campaign> campaign = getCampaign(campaignUid);
+
+        Optional<CampaignDetail> campaignDetailOp = Optional.empty();
+
+        if(campaign.isPresent()){
+            List<CouponCard> cards = cardService.getCards();
+            cards = cards.stream().filter(card -> card.getUsedDate() != null).collect(Collectors.toList());
+
+            CampaignStatistic campaignStatistic =  CampaignStatistic.builder()
+                    .totalCard(campaign.get().getNumOfCards())
+                    .usedCard(cards.size())
+                    .build();
+
+            CampaignDetail campaignDetail = CampaignDetail.builder()
+                    .campaign(campaign.get())
+                    .statistic(campaignStatistic)
+                    .build();
+
+            campaignDetailOp = Optional.of(campaignDetail);
+
+        }
+        return  campaignDetailOp;
     }
 }
