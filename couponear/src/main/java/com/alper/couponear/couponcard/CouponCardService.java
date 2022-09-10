@@ -6,6 +6,11 @@ import com.alper.couponear.campaing.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 
 @Service
@@ -55,5 +60,21 @@ public class CouponCardService {
                campaignRepository.save(campaign.get());
             }
             return  card;
+        }
+
+        public Optional<CouponCard> validateCard(String barcode){
+            Optional<CouponCard> card = Optional.empty();
+
+            card = cardRepository.findByBarcode(barcode);
+
+            if(card.isPresent()){
+                SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd");
+                Date date = new Date(System.currentTimeMillis());
+                if(card.get().getUsedDate() == null){
+                    card.get().setUsedDate(date);
+                    cardRepository.save(card.get());
+                }
+            }
+            return card;
         }
 }

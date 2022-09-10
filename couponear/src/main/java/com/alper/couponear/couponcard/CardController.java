@@ -37,4 +37,17 @@ public class CardController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
     }
+
+    @PostMapping("/validate")
+    public ResponseEntity<CouponCard> cardValidate(@RequestParam(name = "barcode",required = true)  Optional<String> barcode){
+
+        if(barcode.isPresent()) {
+            Optional<CouponCard> card = service.validateCard(barcode.get());
+            if (card.isPresent()) {
+                return ResponseEntity.ok(card.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+    }
 }
