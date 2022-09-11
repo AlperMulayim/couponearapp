@@ -1,5 +1,6 @@
 package com.alper.couponear.users;
 
+import com.alper.couponear.referencesystem.ReferenceSystem;
 import com.alper.couponear.referencesystem.UserReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,8 +40,12 @@ public class UserController {
                 .build();
 
         Optional<User> referee = userRepository.findById(reference.getRefereeId());
+
         if(referee.isPresent()){
             referee.get().getReferences().add(referenceUser);
+            Integer referencePoint = new ReferenceSystem()
+                    .calculateReferencePoint(referee.get().getReferences().size());
+            referee.get().setAvailableSystemCards(referee.get().getAvailableSystemCards() + referencePoint);
         }
         return  userRepository.save(referenceUser);
     }
