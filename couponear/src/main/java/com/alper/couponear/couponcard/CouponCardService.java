@@ -88,4 +88,15 @@ public class CouponCardService {
             //add exception for used card not used again;
             return card;
         }
+
+        public CouponCard gitfCard(){
+            List<CouponCard> cardsNotAssigned = cardRepository.findByUserId(null);
+            Random random = new Random();
+            Integer index = random.ints(0,cardsNotAssigned.size()).findFirst().getAsInt();
+            return cardsNotAssigned.get(index);
+        }
+
+        public CouponCard approveGift(CouponCard card){
+            return  saveCards(card);
+        }
 }

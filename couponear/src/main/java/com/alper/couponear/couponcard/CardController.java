@@ -53,4 +53,14 @@ public class CardController {
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
     }
+
+    @GetMapping("/gift")
+    public ResponseEntity<CouponCard> getGiftCard(){
+        return  ResponseEntity.ok(service.gitfCard());
+    }
+
+    @PostMapping("/gift")
+    public ResponseEntity<CouponCard> getGiftCard(@RequestBody CouponCard card){
+            return ResponseEntity.ok( this.service.approveGift(card));
+    }
 }

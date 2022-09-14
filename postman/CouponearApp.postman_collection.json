@@ -321,6 +321,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/gift",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "/gift",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"companyId\": 250,\n    \"campaingId\": 33,\n    \"campaingName\": \"   DEMO WEEKEND\",\n    \"barcode\": \"CP250-4-8C8A\",\n    \"createDate\": \"2022-09-13T21:00:00.000+00:00\",\n    \"userId\": 10,\n    \"expireDate\": \"2022-09-15T21:00:00.000+00:00\",\n    \"usedDate\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards/gift",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"gift"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
