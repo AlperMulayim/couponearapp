@@ -2,6 +2,7 @@ package com.alper.couponear.campaing;
 
 import com.alper.couponear.couponcard.CouponCard;
 import com.alper.couponear.couponcard.CouponCardService;
+import com.alper.couponear.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class CampaignService {
 
     public Campaign saveCampaign(Campaign campaign) {
         Campaign newCamp = repository.save(campaign);
-        CouponCard card = cardService.generateAndSaveCard(newCamp);
+        CouponCard card = cardService.generateAndSaveCard(newCamp,new User());
 
         if (card != null) {
             campaign.setNumOfCards(campaign.getNumOfCards() - 1);

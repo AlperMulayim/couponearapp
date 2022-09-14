@@ -37,6 +37,9 @@ public class CouponCard {
     @Column(name = "create_date")
     private Date createDate;
 
+    @Column(name = "user_id")
+    private Integer userId;
+
     @Column(name = "expire_date")
     private Date expireDate;
 

@@ -21,6 +21,7 @@ create table cpdb_discount_cards (
 	create_date DATE,
 	expire_date DATE,
 	used_date DATE,
+	user_id INT,
 	PRIMARY KEY(id)
 );
 
@@ -42,6 +43,7 @@ CREATE TABLE cpdb_categories(
 	category_name VARCHAR(150),
 	PRIMARY KEY(id)
 );
+
 CREATE TABLE cpdb_campaign_categories(
 	id INT NOT NULL AUTO_INCREMENT,
 	campaign_id INT,

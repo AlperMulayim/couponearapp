@@ -4,6 +4,8 @@ import com.alper.couponear.campaing.Campaign;
 import com.alper.couponear.campaing.CampaignRepository;
 
 import com.alper.couponear.company.CompanyRepository;
+import com.alper.couponear.users.User;
+import com.alper.couponear.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class CouponCardService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<CouponCard> getCards(){
         return  this.cardRepository.findAll();
     }
@@ -31,7 +36,7 @@ public class CouponCardService {
         return  this.cardRepository.save(card);
     }
 
-    public CouponCard generateAndSaveCard(Campaign campaign){
+    public CouponCard generateAndSaveCard(Campaign campaign, User user){
 
             Random random = new Random();
             UUID uuid = UUID.randomUUID();
@@ -49,17 +54,19 @@ public class CouponCardService {
                         .expireDate(campaign.getExpireDate())
                         .campaingName(campaign.getName())
                         .barcode(barcode)
+                        .userId(user.getId())
                         .build();
 
             return cardRepository.save(card);
         }
 
-        public Optional<CouponCard> createUserCard(String campaignUid){
+        public Optional<CouponCard> createUserCard(String campaignUid, String userUid){
             Optional<CouponCard> card = Optional.empty();
             Optional<Campaign> campaign = campaignRepository.findByUid(campaignUid);
+            Optional<User> user = userRepository.findByUid(userUid);
 
-            if (campaign.isPresent()){
-               card =  Optional.of(this.generateAndSaveCard(campaign.get()));
+            if (campaign.isPresent() && user.isPresent()){
+               card =  Optional.of(this.generateAndSaveCard(campaign.get(),user.get()));
                campaign.get().setNumOfCards(campaign.get().getNumOfCards() -1);
                campaignRepository.save(campaign.get());
             }

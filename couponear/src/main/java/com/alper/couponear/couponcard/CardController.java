@@ -26,9 +26,12 @@ public class CardController {
     }
 
     @PostMapping("/generate")
-    public ResponseEntity<CouponCard> generateCard(@RequestParam(name = "campaignUid", required = true) Optional<String> campaignUid) {
-        if (campaignUid.isPresent()) {
-           Optional<CouponCard> card = service.createUserCard(campaignUid.get());
+    public ResponseEntity<CouponCard> generateCard(
+            @RequestParam(name = "campaignUid", required = true) Optional<String> campaignUid,
+            @RequestParam(name = "userid",required = true) Optional<String> userUid
+    ) {
+        if (campaignUid.isPresent() && userUid.isPresent()) {
+           Optional<CouponCard> card = service.createUserCard(campaignUid.get(),userUid.get());
            if(card.isPresent()){
                return ResponseEntity.ok(card.get());
            }
