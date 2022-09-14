@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/users")
@@ -26,6 +27,8 @@ public class UserController {
     @PostMapping
     public User addUser(@RequestBody User user){
         user.setAvailableSystemCards(totalUserCards);
+        String uid = UUID.randomUUID().toString().substring(0,10);
+        user.setUid(uid);
         return userRepository.save(user);
     }
 
