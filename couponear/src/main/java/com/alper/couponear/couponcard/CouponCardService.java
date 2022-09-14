@@ -7,7 +7,9 @@ import com.alper.couponear.company.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Service
@@ -38,15 +40,16 @@ public class CouponCardService {
             String barcodeEnd= uuid.toString().toUpperCase().substring(0,4);
 
             String barcode = "CP"+ campaign.getOwnerId() + "-" + barcodeBegin.toUpperCase() +"-" + barcodeEnd;
+            Date createDate = Date.from(LocalDateTime.now().toInstant( ZoneId.of("Europe/Berlin").getRules().getOffset(Instant.now())));
 
             CouponCard card = CouponCard.builder()
-                    .companyId(campaign.getOwnerId())
-                    .campaingId(campaign.getId())
-                    .createDate(campaign.getCreateDate())
-                    .expireDate(campaign.getExpireDate())
-                    .campaingName(campaign.getName())
-                    .barcode(barcode)
-                    .build();
+                        .companyId(campaign.getOwnerId())
+                        .campaingId(campaign.getId())
+                        .createDate(createDate)
+                        .expireDate(campaign.getExpireDate())
+                        .campaingName(campaign.getName())
+                        .barcode(barcode)
+                        .build();
 
             return cardRepository.save(card);
         }
@@ -69,10 +72,9 @@ public class CouponCardService {
             card = cardRepository.findByBarcode(barcode);
 
             if(card.isPresent()){
-                SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd");
-                Date date = new Date(System.currentTimeMillis());
+                Date usedDate = Date.from(LocalDateTime.now().toInstant( ZoneId.of("Europe/Berlin").getRules().getOffset(Instant.now())));
                 if(card.get().getUsedDate() == null){
-                    card.get().setUsedDate(date);
+                    card.get().setUsedDate(usedDate);
                     cardRepository.save(card.get());
                 }
             }

@@ -34,12 +34,13 @@ public class UserController {
 
     @PostMapping("/reference")
     public User addReferance(@RequestBody UserReference reference){
+        String uuid = UUID.randomUUID().toString().substring(0,10);
         User referenceUser = User.builder()
                 .name(reference.getName())
                 .surname(reference.getSurname())
                 .email(reference.getEmail())
                 .availableSystemCards(totalUserCards)
-                .uid("UR-"+reference.getName().substring(0,3))
+                .uid("REU-" + uuid)
                 .build();
 
         Optional<User> referee = userRepository.findById(reference.getRefereeId());

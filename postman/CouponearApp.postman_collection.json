@@ -80,7 +80,20 @@
 			"name": "/api/v1/campaigns",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/campaigns",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"campaigns"
+					]
+				}
 			},
 			"response": []
 		},
@@ -208,17 +221,8 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\n        \"companyId\": 2,\n        \"campaingId\": 2,\n        \"campaingName\": \"Discount For Girls Only2\",\n        \"barcode\": \"GG-27-3D-A6-8B-GG\",\n        \"createDate\": \"2021-11-09T21:00:00.000+00:00\",\n        \"expireDate\": \"2022-12-07T21:00:00.000+00:00\",\n        \"usedDate\": \"2022-10-04T21:00:00.000+00:00\"\n    },",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cards",
+					"raw": "http://localhost:8080/api/v1/cards/validate?barcode=CP250-1-12A2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -227,7 +231,14 @@
 					"path": [
 						"api",
 						"v1",
-						"cards"
+						"cards",
+						"validate"
+					],
+					"query": [
+						{
+							"key": "barcode",
+							"value": "CP250-1-12A2"
+						}
 					]
 				}
 			},
