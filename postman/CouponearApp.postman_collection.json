@@ -9,7 +9,20 @@
 			"name": "/users",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
 			},
 			"response": []
 		},
@@ -127,7 +140,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"ownerId\": 3,\n        \"uid\": \"TR-1923\",\n        \"numOfCards\": 50000,\n        \"name\": \"fURKAN\",\n        \"detail\": \"Only for girls who are signle\",\n        \"createDate\": \"2022-09-04T21:00:00.000+00:00\",\n        \"expireDate\": \"2022-09-15T21:00:00.000+00:00\"\n    }",
+					"raw": " {\n        \"ownerId\": 30,\n        \"uid\": \"TR-1923\",\n        \"numOfCards\": 50000,\n        \"name\": \"TEST CAMP\",\n        \"detail\": \"TestCamp\",\n        \"createDate\": \"2022-09-04T21:00:00.000+00:00\",\n        \"expireDate\": \"2022-09-15T21:00:00.000+00:00\"\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,7 +167,20 @@
 			"name": "/api/v1/cards",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards"
+					]
+				}
 			},
 			"response": []
 		},
@@ -193,7 +219,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\n        \"companyId\": 2,\n        \"campaingId\": 2,\n        \"campaingName\": \"Discount For Girls Only2\",\n        \"barcode\": \"GG-27-3D-A6-8B-GG\",\n        \"createDate\": \"2021-11-09T21:00:00.000+00:00\",\n        \"expireDate\": \"2022-12-07T21:00:00.000+00:00\",\n        \"usedDate\": \"2022-10-04T21:00:00.000+00:00\"\n    },",
+					"raw": "  {\n        \"companyId\": 2,\n        \"campaingId\": 2,\n        \"campaingName\": \"Discount Weekend\",\n        \"barcode\": \"GG-27-3D-A6-8B-GG\",\n        \"createDate\": \"2021-11-09T21:00:00.000+00:00\",\n        \"expireDate\": \"2022-12-07T21:00:00.000+00:00\",\n        \"usedDate\": \"2022-10-04T21:00:00.000+00:00\"\n    },",
 					"options": {
 						"raw": {
 							"language": "json"
