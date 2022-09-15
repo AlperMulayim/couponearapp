@@ -38,6 +38,22 @@ create table cpdb_campaigns (
 	PRIMARY KEY(id),
 );
 
+CREATE TABLE cpdb_rules(
+	id INT NOT NULL AUTO_INCREMENT,
+	rule_name VARCHAR(500),
+	create_date DATE,
+	rule_type ENUM("R_CAMPAIGN","R_DEFAULT"),
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE cpdb_campaign_rules(
+	id INT NOT NULL AUTO_INCREMENT,
+	rule_id INT,
+	campaign_id INT,
+	FOREIGN KEY(rule_id) REFERENCES cpdb_rules(id),
+	Foreign Key (campaign_id) REFERENCES  cpdb_campaigns(id)
+);
+
 CREATE TABLE cpdb_categories(
 	id INT NOT NULL AUTO_INCREMENT,
 	category_name VARCHAR(150),

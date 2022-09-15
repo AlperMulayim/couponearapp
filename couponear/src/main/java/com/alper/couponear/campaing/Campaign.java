@@ -1,5 +1,6 @@
 package com.alper.couponear.campaing;
 
+import com.alper.couponear.rules.CampaignRule;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,5 +40,13 @@ public class Campaign {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<CampaignCategories> categories;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cpdb_campaign_rules",
+            joinColumns = @JoinColumn(name = "campaign_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id")
+    )
+    private List<CampaignRule> rules;
 
 }
