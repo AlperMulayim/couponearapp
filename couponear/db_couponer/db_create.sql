@@ -42,7 +42,7 @@ CREATE TABLE cpdb_rules(
 	id INT NOT NULL AUTO_INCREMENT,
 	rule_name VARCHAR(500),
 	create_date DATE,
-	rule_type ENUM("R_CAMPAIGN","R_DEFAULT"),
+	rule_type ENUM("R_CAMPAIGN","R_DEFAULT","R_COMPANY"),
 	PRIMARY KEY(id)
 );
 
@@ -50,6 +50,7 @@ CREATE TABLE cpdb_campaign_rules(
 	id INT NOT NULL AUTO_INCREMENT,
 	rule_id INT,
 	campaign_id INT,
+	PRIMARY KEY(id),
 	FOREIGN KEY(rule_id) REFERENCES cpdb_rules(id),
 	Foreign Key (campaign_id) REFERENCES  cpdb_campaigns(id)
 );
