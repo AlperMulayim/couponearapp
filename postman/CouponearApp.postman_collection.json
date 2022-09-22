@@ -53,7 +53,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/companies",
+					"raw": "http://localhost:8080/api/v1/companies/10/detail",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -62,19 +62,21 @@
 					"path": [
 						"api",
 						"v1",
-						"companies"
+						"companies",
+						"10",
+						"detail"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/api/v1/companies/{id} Copy",
+			"name": "/api/v1/companies/{id}",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/companies",
+					"raw": "http://localhost:8080/api/v1/companies/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -83,7 +85,8 @@
 					"path": [
 						"api",
 						"v1",
-						"companies"
+						"companies",
+						"10"
 					]
 				}
 			},
@@ -128,6 +131,30 @@
 						"v1",
 						"campaigns",
 						"TR-SEP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/campaigns/{id}/rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080//api/v1/campaigns/TR-1923/rules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"api",
+						"v1",
+						"campaigns",
+						"TR-1923",
+						"rules"
 					]
 				}
 			},
@@ -326,7 +353,70 @@
 			"name": "/gift",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cards/gift",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"gift"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/rules?type=R_COMPANY",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"rules"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "R_COMPANY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/rules/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/rules/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"rules",
+						"4"
+					]
+				}
 			},
 			"response": []
 		},
