@@ -41,8 +41,9 @@ create table cpdb_campaigns (
 CREATE TABLE cpdb_rules(
 	id INT NOT NULL AUTO_INCREMENT,
 	rule_name VARCHAR(500),
-	create_date DATE,
 	rule_type ENUM("R_CAMPAIGN","R_DEFAULT","R_COMPANY"),
+	create_date DATE,
+	update_date DATE,
 	PRIMARY KEY(id)
 );
 

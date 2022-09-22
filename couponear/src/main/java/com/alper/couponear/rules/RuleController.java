@@ -38,4 +38,13 @@ public class RuleController {
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @PatchMapping
+    public ResponseEntity< CampaignRule> updateRuleName(@RequestParam(name = "id") Integer id, @RequestParam(name = "name") String newName){
+        Optional<CampaignRule> ruleOp =  ruleService.updateRuleName(id,newName);
+        if(ruleOp.isPresent()){
+            return  ResponseEntity.ok(ruleOp.get());
+        }
+       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
 }

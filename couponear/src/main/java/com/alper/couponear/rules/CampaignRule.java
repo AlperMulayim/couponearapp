@@ -1,6 +1,9 @@
 package com.alper.couponear.rules;
 
 import com.alper.couponear.campaing.Campaign;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,7 +38,11 @@ public class CampaignRule {
     @Column(name = "create_date")
     private Date createDate;
 
+    @Column(name = "update_date")
+    private Date updateDate;
+
     @Column(name = "rule_type", length = 255, columnDefinition = "enum")
+    @JsonProperty("type")
     @Enumerated(EnumType.STRING)
     private CampaignRuleType campaignRuleType;
 }

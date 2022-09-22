@@ -399,6 +399,37 @@
 			"response": []
 		},
 		{
+			"name": "/api/v1/rules",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/rules?name=this is only for students&id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"rules"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "this is only for students"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/v1/rules/{id}",
 			"request": {
 				"method": "GET",
