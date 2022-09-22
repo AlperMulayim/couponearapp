@@ -1,5 +1,6 @@
 package com.alper.couponear.rules;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,12 +40,18 @@ public class RuleController {
     }
 
     @PatchMapping
-    public ResponseEntity< CampaignRule> updateRuleName(@RequestParam(name = "id") Integer id, @RequestParam(name = "name") String newName){
+    public ResponseEntity< CampaignRule> updateRuleName(@RequestParam(name = "id") Integer id,
+                                                        @RequestParam(name = "name") String newName){
         Optional<CampaignRule> ruleOp =  ruleService.updateRuleName(id,newName);
         if(ruleOp.isPresent()){
             return  ResponseEntity.ok(ruleOp.get());
         }
        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @PostMapping
+    public ResponseEntity<CampaignRule> addRules(@RequestBody CampaignRule rule){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(ruleService.addRule(rule));
     }
 
 }

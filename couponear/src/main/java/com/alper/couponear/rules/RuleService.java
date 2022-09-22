@@ -32,4 +32,8 @@ public class RuleService {
         }
         return  ruleOp;
     }
+    public CampaignRule addRule(CampaignRule rule){
+        rule.setCreateDate(new Date());
+        return repository.save(rule);
+    }
 }
