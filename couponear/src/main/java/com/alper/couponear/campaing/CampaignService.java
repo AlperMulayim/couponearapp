@@ -73,4 +73,14 @@ public class CampaignService {
         }
         return  campaignRules;
     }
+    public List<CampaignRule> addRulesToCampaing(String uid, List<CampaignRule> rules ){
+       Optional<Campaign> campaignOp = repository.findByUid(uid);
+
+       if(campaignOp.isPresent()){
+           Campaign campaign = campaignOp.get();
+           campaign.getRules().addAll(rules);
+           repository.save(campaign);
+       }
+       return repository.findByUid(uid).get().getRules();
+    }
 }

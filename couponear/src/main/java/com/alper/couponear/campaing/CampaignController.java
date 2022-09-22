@@ -35,7 +35,7 @@ public class CampaignController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
-    @GetMapping("{id}/rules")
+    @GetMapping("/{id}/rules")
     public ResponseEntity<List<CampaignRule>> getRulesOfCampaign(@PathVariable(name = "id") String  uid){
         Optional<List<CampaignRule>> rulesOp = campaignService.getRules(uid);
 
@@ -43,6 +43,12 @@ public class CampaignController {
             return ResponseEntity.ok(rulesOp.get());
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+     }
+
+     @PostMapping("/{id}/rules")
+    public ResponseEntity<List<CampaignRule>> updateRulesOfCampaign(@PathVariable(name = "id") String uid,
+                                                                    @RequestBody List<CampaignRule> rules){
+            return ResponseEntity.ok(campaignService.addRulesToCampaing(uid,rules));
      }
 
 }
