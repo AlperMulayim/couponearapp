@@ -161,6 +161,38 @@
 			"response": []
 		},
 		{
+			"name": "/api/v1/campaigns/{id}/rules",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\n    {\n        \"id\": 2,\n        \"ruleName\": \"this is only for students\",\n        \"createDate\": \"2022-05-14T21:00:00.000+00:00\",\n        \"updateDate\": \"2022-09-21T21:00:00.000+00:00\",\n        \"type\": \"R_COMPANY\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/campaigns/TR-SEP-DEMO/rules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"campaigns",
+						"TR-SEP-DEMO",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/v1/campaigns",
 			"request": {
 				"method": "POST",
@@ -399,7 +431,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/v1/rules Copy",
+			"name": "/api/v1/rules",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -434,7 +466,7 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/rules?name=this is only for students&id=2",
+					"raw": "http://localhost:8080/api/v1/rules?name=this is only for students 2&id=10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -448,11 +480,11 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "this is only for students"
+							"value": "this is only for students 2"
 						},
 						{
 							"key": "id",
-							"value": "2"
+							"value": "10"
 						}
 					]
 				}
