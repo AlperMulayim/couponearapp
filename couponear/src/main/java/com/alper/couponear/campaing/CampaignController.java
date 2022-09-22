@@ -1,5 +1,6 @@
 package com.alper.couponear.campaing;
 
+import com.alper.couponear.rules.CampaignRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,15 @@ public class CampaignController {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
+
+    @GetMapping("{id}/rules")
+    public ResponseEntity<List<CampaignRule>> getRulesOfCampaign(@PathVariable(name = "id") String  uid){
+        Optional<List<CampaignRule>> rulesOp = campaignService.getRules(uid);
+
+        if(rulesOp.isPresent()){
+            return ResponseEntity.ok(rulesOp.get());
+        }
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+     }
 
 }

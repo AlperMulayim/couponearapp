@@ -2,6 +2,7 @@ package com.alper.couponear.campaing;
 
 import com.alper.couponear.couponcard.CouponCard;
 import com.alper.couponear.couponcard.CouponCardService;
+import com.alper.couponear.rules.CampaignRule;
 import com.alper.couponear.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -61,5 +62,15 @@ public class CampaignService {
 
         }
         return  campaignDetailOp;
+    }
+
+    public Optional<List<CampaignRule>> getRules(String uid){
+        Optional<List<CampaignRule>> campaignRules = Optional.empty();
+
+        Optional<Campaign> campaign = repository.findByUid(uid);
+        if(campaign.isPresent()){
+            campaignRules =  Optional.of( campaign.get().getRules());
+        }
+        return  campaignRules;
     }
 }
