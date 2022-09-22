@@ -83,4 +83,17 @@ public class CampaignService {
        }
        return repository.findByUid(uid).get().getRules();
     }
+
+    public List<CampaignRule> deleteRules(String uid){
+        List<CampaignRule> rules = null;
+
+        Optional<Campaign> campaignOp = repository.findByUid(uid);
+        if(campaignOp.isPresent()){
+            Campaign campaign = campaignOp.get();
+            rules = campaign.getRules();
+            campaign.setRules(null);
+            repository.save(campaign);
+        }
+        return rules;
+    }
 }

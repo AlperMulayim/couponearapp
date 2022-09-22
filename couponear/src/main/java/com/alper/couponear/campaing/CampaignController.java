@@ -51,4 +51,8 @@ public class CampaignController {
             return ResponseEntity.ok(campaignService.addRulesToCampaing(uid,rules));
      }
 
+     @DeleteMapping("/{id}/rules")
+    public ResponseEntity<List<CampaignRule>> deleteRules(@PathVariable(name = "id") String uid){
+        return ResponseEntity.ok(campaignService.deleteRules(uid));
+     }
 }

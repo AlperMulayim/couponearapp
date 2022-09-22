@@ -54,4 +54,5 @@ public class RuleController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(ruleService.addRule(rule));
     }
 
+
 }

@@ -41,7 +41,7 @@ public class Campaign {
     )
     private List<CampaignCategories> categories;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "cpdb_campaign_rules",
             joinColumns = @JoinColumn(name = "campaign_id"),
