@@ -1,5 +1,6 @@
 package com.alper.couponear.campaing;
 
+import com.alper.couponear.historysystem.HistoryService;
 import com.alper.couponear.rules.CampaignRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class CampaignController {
 
     @Autowired
     private CampaignService campaignService;
+
+    @Autowired
+    private HistoryService historyService;
 
     @GetMapping
     public List<Campaign> getAll(){
@@ -36,23 +40,26 @@ public class CampaignController {
     }
 
     @GetMapping("/{id}/rules")
-    public ResponseEntity<List<CampaignRule>> getRulesOfCampaign(@PathVariable(name = "id") String  uid){
+    public ResponseEntity<List<CampaignRule>> getRulesOfCampaign(@PathVariable(name = "id") String  uid) {
         Optional<List<CampaignRule>> rulesOp = campaignService.getRules(uid);
 
-        if(rulesOp.isPresent()){
+        if (rulesOp.isPresent()) {
             return ResponseEntity.ok(rulesOp.get());
         }
-        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-     }
-
-     @PostMapping("/{id}/rules")
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+    @PostMapping("/{id}/rules")
     public ResponseEntity<List<CampaignRule>> updateRulesOfCampaign(@PathVariable(name = "id") String uid,
                                                                     @RequestBody List<CampaignRule> rules){
-            return ResponseEntity.ok(campaignService.addRulesToCampaing(uid,rules));
+        List<CampaignRule> campaignRules = campaignService.addRulesToCampaing(uid,rules);
+        historyService.addContent(campaignRules.toString());
+        return ResponseEntity.ok(campaignRules);
+
      }
 
      @DeleteMapping("/{id}/rules")
     public ResponseEntity<List<CampaignRule>> deleteRules(@PathVariable(name = "id") String uid){
+        historyService.addContent("delete rules of" + uid);
         return ResponseEntity.ok(campaignService.deleteRules(uid));
      }
 }
