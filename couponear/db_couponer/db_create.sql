@@ -80,3 +80,10 @@ CREATE TABLE cpdb_user_references(
 	FOREIGN KEY(user_id) REFERENCES cpdb_users(id),
 	FOREIGN KEY(reference_id) REFERENCES cpdb_users(id)
 );
+
+CREATE TABLE cpdb_history(
+	id INT NOT NULL AUTO_INCREMENT,
+	data_content VARCHAR(8000),
+	create_date DATE,
+	PRIMARY KEY (id)
+);
