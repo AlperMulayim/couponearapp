@@ -23,6 +23,7 @@ public class HistoryService {
                 toInstant( ZoneId.of("Europe/Berlin").getRules().getOffset(Instant.now())));
 
         CouponearHistory history = CouponearHistory.builder()
+                .objectName(data.getClass().getName())
                 .content(data.toString())
                 .createDate(date)
                 .build();

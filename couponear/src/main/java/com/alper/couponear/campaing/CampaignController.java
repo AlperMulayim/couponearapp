@@ -52,7 +52,7 @@ public class CampaignController {
     public ResponseEntity<List<CampaignRule>> updateRulesOfCampaign(@PathVariable(name = "id") String uid,
                                                                     @RequestBody List<CampaignRule> rules){
         List<CampaignRule> campaignRules = campaignService.addRulesToCampaing(uid,rules);
-        historyService.addContent(campaignRules.toString());
+        historyService.addContent(campaignRules);
         return ResponseEntity.ok(campaignRules);
 
      }

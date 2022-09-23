@@ -22,6 +22,9 @@ public class CouponearHistory {
     @Column(name = "data_content")
     private String content;
 
+    @Column(name = "object_name")
+    private String objectName;
+
     @Column(name = "create_date")
     private Date createDate;
 }

@@ -84,6 +84,7 @@ CREATE TABLE cpdb_user_references(
 CREATE TABLE cpdb_history(
 	id INT NOT NULL AUTO_INCREMENT,
 	data_content VARCHAR(8000),
+	object_name VARCHAR(200),
 	create_date DATE,
 	PRIMARY KEY (id)
 );
