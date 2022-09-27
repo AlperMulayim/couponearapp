@@ -12,15 +12,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-//      CREATE TABLE cpdb_campaign_rules(
-//        id INT NOT NULL AUTO_INCREMENT,
-//        campaign_id INT,
-//        rule_name VARCHAR(500),
-//        create_date DATE,
-//        rule_type ENUM("R_CAMPAIGN","R_DEFAULT"),
-//        PRIMARY KEY(id),
-//        FOREIGN KEY(campaign_id) REFERENCES cpdb_campaigns(id)
-//        );
 @Entity
 @Table(name = "cpdb_rules")
 @AllArgsConstructor

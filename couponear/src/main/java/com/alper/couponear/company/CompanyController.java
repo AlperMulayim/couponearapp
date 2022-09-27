@@ -1,6 +1,8 @@
 package com.alper.couponear.company;
 
 
+import com.alper.couponear.mapper.CompanyDTO;
+import com.alper.couponear.mapper.CompanyMapper;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ public class CompanyController {
     @Autowired
     private  CompanyService service;
 
+    @Autowired
+    private CompanyMapper companyMapper;
     @GetMapping
     public List<Company> getCompanies(@RequestParam(name = "city",required = false) Optional<String> city,
                                       @RequestParam(name = "owner",required = false) Optional<String> owner){
@@ -25,12 +29,12 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Company> getCompany(@PathVariable(name = "id") Integer id){
+    public ResponseEntity<CompanyDTO> getCompany(@PathVariable(name = "id") Integer id){
 
         Optional<Company> companyOp = service.getCompany(id);
 
         if(companyOp.isPresent()){
-            return   ResponseEntity.ok(companyOp.get());
+            return   ResponseEntity.ok(companyMapper.toDTO(companyOp.get()));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
