@@ -8,12 +8,21 @@ spring:
     hibernate.ddl-auto: validate
     generate-ddl: true
     show-sql: true
-
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 appset:
   totalcampaings: 10
   totalcards: 200
   totalusercards: 10
+
