@@ -76,7 +76,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/companies/10",
+					"raw": "http://localhost:8080/api/v1/companies/1000",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,7 +86,7 @@
 						"api",
 						"v1",
 						"companies",
-						"10"
+						"1000"
 					]
 				}
 			},
@@ -199,7 +199,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/campaigns/TR-SEP-DEMO/rules",
+					"raw": "http://localhost:8080/api/v1/campaigns/TR-1923/rules",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -209,7 +209,7 @@
 						"api",
 						"v1",
 						"campaigns",
-						"TR-SEP-DEMO",
+						"TR-1923",
 						"rules"
 					]
 				}
@@ -563,6 +563,46 @@
 						"v1",
 						"cards",
 						"gift"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator"
 					]
 				}
 			},
