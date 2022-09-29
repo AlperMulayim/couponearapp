@@ -1,3 +1,3 @@
-FROM mysql
-COPY /db_couponer/db_create.sql /docker-entrypoint-initdb.d/schema.sql
-
+FROM openjdk:17
+COPY target/couponear-0.0.1-SNAPSHOT.jar  /couponear-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/couponear-0.0.1-SNAPSHOT.jar"]
