@@ -1,6 +1,8 @@
 -- Active: 1651576140687@@127.0.0.1@3306
-CREATE DATABASE couponeardb
+CREATE DATABASE IF NOT EXISTS couponeardockerdb
     DEFAULT CHARACTER SET = 'utf8mb4';
+
+USE  couponeardockerdb;
 
 CREATE TABLE cpdb_users(
     id  INT NOT NULL AUTO_INCREMENT,
@@ -35,12 +37,12 @@ create table cpdb_campaigns (
 	campaign_detail VARCHAR(50),
 	create_date DATE,
 	expire_date DATE,
-	PRIMARY KEY(id),
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE cpdb_rules(
 	id INT NOT NULL AUTO_INCREMENT,
-	rule_name VARCHAR(500),
+	rule_name VARCHAR(100),
 	rule_type ENUM("R_CAMPAIGN","R_DEFAULT","R_COMPANY"),
 	create_date DATE,
 	update_date DATE,

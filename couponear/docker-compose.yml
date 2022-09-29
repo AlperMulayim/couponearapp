@@ -1,0 +1,21 @@
+services:
+
+  mysqldb:
+    stdin_open: true
+    container_name: "couponearsql"
+    image: mysql
+    ports: 
+      - "3306:3306"
+    volumes:
+      - ./db/:/data/db
+    
+    build:
+      dockerfile: Dockerfile
+      context: .
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=couponeardockerdb
+      - MYSQL_PASSWORD=rootpass
+
+  
