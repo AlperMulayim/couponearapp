@@ -2,8 +2,20 @@ package com.alper.couponear.users;
 
 import com.alper.couponear.referencesystem.ReferenceSystem;
 import com.alper.couponear.referencesystem.UserReference;
+import com.alper.couponear.security.JwtTokenPorvider;
+import com.alper.couponear.security.LoginRequest;
+import com.alper.couponear.security.LoginResponse;
+import com.alper.couponear.security.WebSecurityConfig;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +30,16 @@ public class UserController {
     private Integer totalUserCards;
     @Autowired
     private  UserRepository userRepository;
+
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenPorvider tokenProvider;
 
     @GetMapping
     public List<User> getUsers(){
@@ -52,5 +74,26 @@ public class UserController {
             referee.get().setAvailableSystemCards(referee.get().getAvailableSystemCards() + referencePoint);
         }
         return  userRepository.save(referenceUser);
+    }
+
+
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> authenticateUser(@RequestBody LoginRequest loginRequest){
+          String token = null;
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                loginRequest.getMail(),  new BCryptPasswordEncoder().encode("a")));
+
+//
+//        if(authentication.isAuthenticated()){
+//            token= tokenProvider.generate(loginRequest.getMail());
+//        }
+
+        token = tokenProvider.generate(loginRequest.getMail());
+
+        return ResponseEntity.ok(LoginResponse.builder()
+                        .mail(loginRequest.getMail())
+                        .token(token)
+                .build());
     }
 }
