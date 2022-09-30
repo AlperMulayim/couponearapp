@@ -1,8 +1,14 @@
--- Active: 1651576140687@@127.0.0.1@3306
+-- Active: 1664392447753@@127.0.0.1@3306@couponeardb
 CREATE DATABASE IF NOT EXISTS couponeardockerdb
     DEFAULT CHARACTER SET = 'utf8mb4';
 
 USE  couponeardockerdb;
+
+CREATE TABLE cpdb_roles(
+	id INT NOT NULL AUTO_INCREMENT,
+	role_name VARCHAR(20),
+	PRIMARY KEY(id)
+);
 
 CREATE TABLE cpdb_users(
     id  INT NOT NULL AUTO_INCREMENT,
@@ -11,7 +17,9 @@ CREATE TABLE cpdb_users(
     surname VARCHAR(65),
     mail VARCHAR(65),
 	available_system_cards INT,
-    PRIMARY KEY(id)
+	role_id INT,
+    PRIMARY KEY(id),
+	FOREIGN KEY(role_id) REFERENCES cpdb_roles(id)
 );
 
 create table cpdb_discount_cards (

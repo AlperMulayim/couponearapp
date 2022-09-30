@@ -43,4 +43,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "reference_id")
     )
     private List<User> references;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id",referencedColumnName = "id")
+    private UserRole role;
+
 }
