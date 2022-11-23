@@ -15,7 +15,8 @@ public class QueueSender {
     private Queue queue;
 
     public  void  send(String mes){
-        template.convertAndSend(queue.getName(),mes);
+        template.convertAndSend("exchange.64c102c1-74f9-4ecc-ad2f-6954753b22c2", "64c102c1-74f9-4ecc-ad2f-6954753b22c2", mes);
+        //template.convertAndSend(queue.getName(),mes);
     }
 
 }

@@ -11,9 +11,14 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+#  rabbitmq:
+#    host: rabbitmq-exam.rmq3.cloudamqp.com
+#    virtual-host: mxifnklj
+#    username: student
+#    password: XYR4yqc.cxh4zug6vje
+
   rabbitmq:
     host: localhost
-    port: 5672
     username: guest
     password: guest
 
