@@ -1,6 +1,7 @@
 package com.alper.couponear.couponcard;
 
 import com.alper.couponear.campaing.Campaign;
+import com.alper.couponear.rabbitmq.QueueSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ public class CardController {
     @Autowired
     private  CouponCardService service;
 
+    @Autowired
+    private QueueSender queueSender;
     @GetMapping
     public List<CouponCard> getCards(){
         return  service.getCards();
@@ -33,6 +36,7 @@ public class CardController {
         if (campaignUid.isPresent() && userUid.isPresent()) {
            Optional<CouponCard> card = service.createUserCard(campaignUid.get(),userUid.get());
            if(card.isPresent()){
+               queueSender.send("CARD GENERATED" + card.get().toString());
                return ResponseEntity.ok(card.get());
            }
            return  ResponseEntity.status(HttpStatus.CONFLICT).body(null);
