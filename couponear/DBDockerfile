@@ -1,3 +1,5 @@
 FROM mysql
 COPY /db_couponer/db_create.sql /docker-entrypoint-initdb.d/schema.sql
 COPY /db_couponer/cpdb_rules.sql /docker-entrypoint-initdb.d/schema2.sql
+COPY /db_couponer/cpdb_users.sql /docker-entrypoint-initdb.d/schema3.sql
+COPY /db_couponer/cpdb_companies.sql /docker-entrypoint-initdb.d/schema4.sql
