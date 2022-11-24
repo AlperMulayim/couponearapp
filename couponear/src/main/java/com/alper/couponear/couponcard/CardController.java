@@ -2,6 +2,7 @@ package com.alper.couponear.couponcard;
 
 import com.alper.couponear.campaing.Campaign;
 import com.alper.couponear.rabbitmq.QueueSender;
+import com.alper.couponear.rabbitmq.notification.NotificationPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class CardController {
 
     @Autowired
     private QueueSender queueSender;
+
+    @Autowired
+    private NotificationPublisher notificationPublisher;
     @GetMapping
     public List<CouponCard> getCards(){
         return  service.getCards();
@@ -51,6 +55,7 @@ public class CardController {
         if(barcode.isPresent()) {
             Optional<CouponCard> card = service.validateCard(barcode.get());
             if (card.isPresent()) {
+                notificationPublisher.send("CARD VALIDATED...-> " +card.get().toString());
                 return ResponseEntity.ok(card.get());
             }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
