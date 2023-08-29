@@ -1,6 +1,7 @@
 package com.alper.couponear.couponcard;
 
 
+import com.alper.couponear.company.Company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,10 @@ public class CouponCard {
 
     @Column(name = "company_id")
     private Integer companyId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Company company;
 
     @Column(name="campaing_id")
     private Integer campaingId;

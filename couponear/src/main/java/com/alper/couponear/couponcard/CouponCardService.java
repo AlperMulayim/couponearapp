@@ -3,9 +3,12 @@ package com.alper.couponear.couponcard;
 import com.alper.couponear.campaing.Campaign;
 import com.alper.couponear.campaing.CampaignRepository;
 
+import com.alper.couponear.company.Company;
 import com.alper.couponear.company.CompanyRepository;
+import com.alper.couponear.rules.CampaignRule;
 import com.alper.couponear.users.User;
 import com.alper.couponear.users.UserRepository;
+import org.apache.tomcat.util.digester.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CouponCardService {
@@ -46,10 +50,11 @@ public class CouponCardService {
 
             String barcode = "CP"+ campaign.getOwnerId() + "-" + barcodeBegin.toUpperCase() +"-" + barcodeEnd;
             Date createDate = Date.from(LocalDateTime.now().toInstant( ZoneId.of("Europe/Berlin").getRules().getOffset(Instant.now())));
-
+            Company company = companyRepository.findById(campaign.getOwnerId()).get();
             CouponCard card = CouponCard.builder()
                         .companyId(campaign.getOwnerId())
                         .campaingId(campaign.getId())
+                        .company(company)
                         .createDate(createDate)
                         .expireDate(campaign.getExpireDate())
                         .campaingName(campaign.getName())
@@ -73,6 +78,27 @@ public class CouponCardService {
             return  card;
         }
 
+        public GeneratedCouponCardDetails generateCouponCard(String campaignId, String userId){
+            GeneratedCouponCardDetails cardDetails = null;
+
+            Optional<CouponCard> generatedUserCard = createUserCard(campaignId,userId);
+
+            Campaign  campaign = campaignRepository.findByUid(campaignId).get();
+            String rules = campaign.getRules().stream()
+                    .map(CampaignRule::getRuleName)
+                    .collect(Collectors.joining(" | "));
+            if(generatedUserCard.isPresent()){
+                CouponCard card = generatedUserCard.get();
+                cardDetails = GeneratedCouponCardDetails.builder()
+                        .cardBarcode(card.getBarcode())
+                        .companyName(card.getCompany().getName())
+                        .expireDate(card.getExpireDate().toString())
+                        .details(campaign.getDetail())
+                        .rules(rules)
+                        .build();
+            }
+            return cardDetails;
+        }
         public Optional<CouponCard> validateCard(String barcode){
             Optional<CouponCard> card = Optional.empty();
 
